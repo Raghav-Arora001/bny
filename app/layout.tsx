@@ -4,7 +4,7 @@ import {
 } from "@clerk/nextjs";
 import { shadcn } from "@clerk/ui/themes";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Noto_Serif } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Noto_Serif } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -20,6 +20,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+
+})
+
 export const metadata: Metadata = {
   title: "BNY",
   description: "Build with Next.js and Clerk",
@@ -34,9 +40,9 @@ export default function RootLayout({
     <ClerkProvider appearance={{ theme: shadcn }}>
       <html
         lang="en"
-        className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-serif", notoSerif.variable)}
+        className={cn("h-full", "antialiased", notoSerif.variable, geistSans.variable, geistMono.variable, inter.variable)}
       >
-        <body className="min-h-full flex flex-col">
+        <body className={cn("min-h-full flex flex-col", inter.className)}>
           <Header />
           {children}
         </body>
